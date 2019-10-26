@@ -7,11 +7,11 @@
     <title>Lista de usuarios</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-   
+
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-     <!-- Latest compiled JavaScript -->
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script type="text/javascript" src="./javascript.js"></script>
@@ -20,9 +20,16 @@
 
 <body>
     <div class="container">
-        <h1>Usuarios registrados de ésta sesión</h1>
         <div class="row">
-            <div class="usr-table">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <h1>Usuarios registrados en ésta sesión</h1>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1"> </div>
+            <div class="col-sm-10 usr-table table-responsive">
                 <table class="table table.stripped" id="data" width=80%>
                     <thead>
                         <th>ID</th>
@@ -91,7 +98,83 @@
                     </tbody>
                 </table>
             </div>
+            <div class="col-sm-1"></div>
         </div>
+        <div class="row">
+            <div class="col-sm-7"></div>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-success btn-lg col-md-12 text-center" data-toggle="modal"
+                    data-target="#usrInput">CARGAR USUARIO</button>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <div class="modal fade" id="usrInput" tabindex="-1" role="dialog" aria-labelledby="usrInputModal"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title" id="usrInputTittle">Carga un usuario nuevo</h3>
+
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class=form>
+                            <form>
+                                <div class="form-group">
+                                    <label for="inputName">Nombre</label>
+                                    <input class="form-control" id="inputName" type="text" placeholder="Ej: Juan Pérez"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDate">Fecha de nacimiento</label>
+                                    <input class="form-control" id="inputDate" type="date" placeholder="DD/MM/AAAA"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sexRadioOptions">Sexo</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexRadioOptions"
+                                            id="genreRadio1" value="F" required>
+                                        <label class="form-check-label" for="genreRadio1">
+                                            Femenino
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexRadioOptions"
+                                            id="genreRadio2" value="M" required>
+                                        <label class="form-check-label" for="genreRadio2">
+                                            Masculino
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexRadioOptions"
+                                            id="genreRadio3" value="O" required>
+                                        <label class="form-check-label" for="genreRadio3"> Otro</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail">E-mail</label>
+                                    <input class="form-control" id="inputEmail" type="email"
+                                        placeholder="Ej: jperez@mail.com" required>
+                                </div>
+                                <div class="text-right">
+                                    <div class="btn-group" role="group" aria-label="accept/cancel">
+                                        <buttton type="submit" class="btn btn-success">GUARDAR</buttton>
+                                        <buttton type="cancel" class="btn btn-light" data-dismiss="modal"
+                                            aria-label="Cancel">CANCELAR</buttton>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
 </body>
