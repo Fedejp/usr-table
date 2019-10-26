@@ -1,11 +1,11 @@
 $(document).ready(function(){
-    $('#data').after('<div id="nav"></div>');
+    $('#data').after('<div id="nav" class="col-md-12 text-center"></div>');
     var rowsShown = 5;
     var rowsTotal = $('#data tbody tr').length;
     var numPages = rowsTotal/rowsShown;
     for(i = 0;i < numPages;i++) {
         var pageNum = i + 1;
-        $('#nav').append('<a href="#" rel="'+i+'">'+pageNum+'</a> ');
+        $('#nav').append('<a  class="btn btn-outline-info" href="#" rel="'+i+'" role="button">'+pageNum+'</a> ');
     }
     $('#data tbody tr').hide();
     $('#data tbody tr').slice(0, rowsShown).show();
