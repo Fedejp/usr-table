@@ -21,3 +21,4 @@ $(document).ready(function(){
         css('display','table-row').animate({opacity:1}, 300);
     });
 });
+
