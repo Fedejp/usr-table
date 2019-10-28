@@ -22,3 +22,47 @@ $(document).ready(function(){
     });
 });
 
+function save(){
+    let _name = document.getElementById("inputName").value;
+    let _dob = document.getElementById("inputDate").value;
+    let _sexradio= document.getElementsByName("sexRadioOptions");
+    for(let i=0; i<_sexradio.length;i++){
+        if(_sexradio[i].checked)
+            var _sexchoose = _sexradio[i].value;
+    }
+    let _mail= document.getElementById("inputEmail").value;
+    let _age = getAge();
+   
+
+
+  
+    
+   // console.log("Nombre " +_name +" Fecha: "+ _dob + " Sexo "+_sexchoose+" Email: "+_mail);
+    
+    let _row = "<tr><td>"+_name+"</td><td>"+_age+" años</td><td>"+_sexchoose+"</td><td>"+_mail+"</td><td></td></tr>";
+    let _htmlrow = document.createElement("TR");
+    _htmlrow.innerHTML = _row;
+    document.getElementById("tableBody").appendChild(_htmlrow);
+
+    function getAge() {
+         //getting the values for the Date of birth
+        let _dobarr = _dob.split("-");
+        let _doby = _dobarr[0];
+        let _dobm = _dobarr[1];
+        let _dobd = _dobarr[2];
+        //getting the values for today
+        let _today = new Date();
+        let _todayy = _today.getFullYear();
+        let _todaym = _today.getMonth() + 1;
+        let _todayd = _today.getDate();
+        //calculates age in years
+        let _age = _todayy - _doby;
+        if (_todaym < _dobm) {
+            _age--;
+        }
+        if ((_dobm == _todaym) && (_todayd < _dobd)) {
+            _age--;
+        }
+        return _age;
+    }
+}
