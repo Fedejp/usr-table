@@ -1,14 +1,12 @@
+
 $(document).ready(function(){
     //table pager
     $('#data').after('<div id="nav" class="col-md-12 text-center"></div>');
     var rowsShown = 5;
     var rowsTotal = $('#data tbody tr').length;
     var numPages = rowsTotal/rowsShown;
-    console.log(rowsTotal);
     if(rowsTotal==0){
-        var _defrow=document.createElement("TR");
-        _defrow.innerHTML= "<tr id=defrow> <td colspan=6> Todavía no hay usuarios registrados.</td></tr>"
-        document.getElementById("tableBody").appendChild(_defrow);
+        createDefRow(); //Crea la fila default
     }
     for(i = 0;i < numPages;i++) {
         var pageNum = i + 1;
@@ -29,6 +27,13 @@ $(document).ready(function(){
     });
 });
 
+function createDefRow() {
+    var _defrow = document.createElement("TR");
+    _defrow.setAttribute("id", "defrow");
+    _defrow.innerHTML = "<tr> <td colspan=6> Todavía no hay usuarios registrados.</td></tr>";
+    document.getElementById("tableBody").appendChild(_defrow);
+}
+
 function save(){
     let _name = document.getElementById("inputName").value;
     let _dob = document.getElementById("inputDate").value;
@@ -40,16 +45,23 @@ function save(){
     let _mail= document.getElementById("inputEmail").value;
     let _age = getAge();
 
-    document.getElementById("defrow");
+    if(document.getElementById("defrow")!=null){
+        var row = document.getElementById("defrow");
+        row.parentNode.removeChild(row);
+    }
+        
+    
 
 
   
     
-   // console.log("Nombre " +_name +" Fecha: "+ _dob + " Sexo "+_sexchoose+" Email: "+_mail);
+
+    let _id=  $('#data tbody tr').length+1;
     
-    let _row = "<tr><td>"+_name+"</td><td>"+_age+" años</td><td>"+_sexchosen+"</td><td>"+_mail+"</td><td></td></tr>";
+    let _row = "<tr><td>"+_id+"</td><td>"+_name+"</td><td>"+_age+" años</td><td>"+_sexchosen+"</td><td>"+_mail+"</td><td><button type=edit class=\"btn btn-link editar\" data-toggle=modal data-target=#usrInput><span class=\"glyphicon glyphicon-pencil\"></span></button><button type=delete class=\"btn btn-danger borrar\"><span class=\"glyphicon glyphicon-remove-circle editar\"</span></button></td></tr>";
     let _htmlrow = document.createElement("TR");
     _htmlrow.innerHTML = _row;
+    _htmlrow.setAttribute("id",""+_id);
     document.getElementById("tableBody").appendChild(_htmlrow);
 
     function getAge() {
@@ -74,3 +86,27 @@ function save(){
         return _age;
     }
 }
+
+
+$(document).on('click', '.borrar', function (event) { //función para que una fila se borre a sí misma
+    event.preventDefault();
+    $(this).closest('tr').remove();
+    let rowsTotal = $('#data tbody tr').length;
+    if(rowsTotal==0){
+        createDefRow();
+    }
+});
+
+$(document).on('click', '.editar', function (event) { //función para que una fila llame al editor
+    event.preventDefault();
+    let values = [];
+    i=0;
+    $(this).parents("tr").find("td").each(function(){
+        values[i]= $(this).html();
+        i++
+    })
+    console.log(values);
+    document.getElementById
+
+});
+
