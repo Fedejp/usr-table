@@ -25,3 +25,11 @@ a:hover{
   tr:nth-child(even) {
     background-color: #dddddd;
   }
+
+  input:invalid {
+    box-shadow: 0 0 5px 1px rgb(255, 83, 83);
+  }
+  
+  input:focus:invalid {
+    outline: none;
+  }
